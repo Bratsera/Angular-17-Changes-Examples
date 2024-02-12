@@ -1,0 +1,66 @@
+<h1>Signals</h1>
+
+<div id="counter">
+  <p class="counter-output">Counter: {{ doubleCounter() }}</p>
+  
+ 
+  @if(autoCounter() == undefined){
+    <p class="counter-output">There is no autoCounter value yet</p>
+  }@else{
+    <p class="counter-output">Auto-Counter: {{ autoCounter() }}</p>
+  }
+  
+
+  <div id="counter-btns">
+    <button (click)="decrement()">Decrement</button>
+    <button (click)="increment()">Increment</button>
+  </div>
+</div>
+<div style="text-align: center; font-size: 24px;" class="">
+  @switch (autoCounter()) {
+    @case (0) {
+     <p>Counter has started</p>
+    }
+    @case (5) {
+      <p>You wasted {{autoCounter()}} seconds of your life</p>
+    }
+    @default {
+    <p>Counting...</p>
+    }
+  }
+</div>
+
+
+
+<h2>Action Log</h2>
+<!-- track item.name instead of trackby function in *ngFor-->
+<ol id="log">
+  @for (
+    action of actions(); 
+    track action;  
+    let idx = $index, 
+    e = $even, 
+    o = $odd, 
+    first = $first, last = $last
+    ) {
+    <li>
+       Action #{{ idx }}: {{ action }} 
+       
+       @if (e) {
+        <p> I'm even: {{e}} </p>
+      } @else if (o) {
+        <p> I'm odd: {{o}} </p>
+      }
+      @if (first) {
+        <p> I'm the first </p>
+      }
+      @if (last) {
+        <p>  I'm the last </p>
+      }
+    </li>
+
+  } @empty {
+    <li> There are no actions yet.</li>
+  }
+ 
+</ol>

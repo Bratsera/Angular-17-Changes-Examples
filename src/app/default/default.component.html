@@ -1,0 +1,29 @@
+<h1>Default (Automatic Change Detection)</h1>
+
+<div id="counter">
+  <p class="counter-output">Counter: {{ counter }}</p>
+  <p class="counter-output">Auto-Counter: {{ autoCounter }}</p>
+  <div id="counter-btns">
+    <button (click)="decrement()">Decrement</button>
+    <button (click)="increment()">Increment</button>
+  </div>
+</div>
+
+<div style="text-align: center; font-size: 24px;" [ngSwitch]=autoCounter>
+  <div *ngSwitchCase="0">
+
+    <p>Counter has started</p>
+  </div>
+  <div *ngSwitchCase="5">
+
+    <p>You wasted {{autoCounter}} seconds of your life</p>
+  </div>
+  <div *ngSwitchDefault>
+    <p>Counting...</p>
+  </div>
+
+</div>
+<h2>Action Log</h2>
+<ol id="log">
+  <li *ngFor="let action of actions">{{ action }}</li>
+</ol>
